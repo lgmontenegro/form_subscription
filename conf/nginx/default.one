@@ -1,0 +1,44 @@
+upstream php7.0-fpm-sock {
+    server unix:/var/run/php/php7.0-fpm.sock;
+}
+
+server {
+
+    listen 80 default_server;
+ 
+    root /usr/share/nginx/html;
+ 
+    access_log /var/log/nginx/default-access_log;
+    error_log /var/log/nginx/default-error_log;
+    
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_index index.php;
+        fastcgi_pass php7.0-fpm-sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    charset utf-8;
+
+    location / {
+        index  index.html index.php;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ ^/(protected|framework|themes/\w+/views) {
+        deny  all;
+    }
+
+    #avoid processing of calls to unexisting static files by yii
+    location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+        try_files $uri =404;
+    }
+
+    # prevent nginx from serving dotfiles (.htaccess, .svn, .git, etc.)
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+}
