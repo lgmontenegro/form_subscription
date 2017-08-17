@@ -3,12 +3,14 @@ namespace base;
 Class View{
     protected $template, $vars;
     
-    public function __construct($template, $vars=[]) {
+    public function __construct($template, $vars=[]) 
+    {
         $this->template = $template;
         $this->vars = $vars;
     }
     
-    public function render(){
+    public function render()
+    {
         try {
 
             if (file_exists($this->template)) {
