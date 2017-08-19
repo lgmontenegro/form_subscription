@@ -18,6 +18,8 @@ function isValidEmailFormat(){
 function isEqualEmail(){
     var email = $('#inputEmail').val();
     var confirmEmail = $('#inputConfirmarEmail').val();
+    $('#confirmEmailGroup').removeClass("has-error");
+    $('#helpConfirmEmail').addClass("hidden");
     
     if(email === confirmEmail){
         $('#confirmEmailGroup').removeClass("has-error");
@@ -108,7 +110,7 @@ function checkPasswordEqual(){
     var passwordTwo = $('#inputConfirmarPass').val();
     
     $('#helpConfirmaPasswordError').addClass("hidden");
-    $('#helpConfirmaPasswordOk').removeClass("hidden");
+    $('#helpConfirmaPasswordOk').addClass("hidden");
     
     $('#confirmarPasswordGroup').removeClass("has-error");
     $('#confirmarPasswordGroup').removeClass("has-success");
@@ -163,7 +165,7 @@ function submitForm(){
         envia = false;
     }
     if(apelido.length === 0){
-        $('#gApelido').addClass('has-error');
+        $('#gNome').addClass('has-error');
         envia = false;
     }
     if(rua.length === 0){
@@ -193,39 +195,58 @@ function submitForm(){
     }
     
     if(envia){
-        console.log('passou');
-        
-            var url = "register.php"; 
-            $.ajax({
-                   type: "POST",
-                   url: url,
-                   data: $("#registration").serialize(), 
-                   success: function(data)
-                   {
-                       alert(data); 
-                   }
-                 });
+        var url = "register.php"; 
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#registration").serialize(), 
+            success: function(data)
+            {
+                if(data.hasOwnProperty('success')){
+                    window.location.replace("success.php");
+                }else{
+                    window.alert('Foram detectados erros nos dados enviados. Por favor, corrija. Lembramos que todos os campos são obrigatórios');
+                    console.log(data);
+                    data.error.forEach(function(element){
+                        console.log(element);
+                        if(element === 'email'){
+                            $('#confirmEmailGroup').addClass("has-error");
+                            $('#confirmEmailGroup').removeClass("has-success");
+                            $('#helpConfirmEmail').removeClass("hidden");
+                        }
+                        if(element === 'password'){
+                            $('#confirmarPasswordGroup').removeClass("has-error");
+                            $('#confirmarPasswordGroup').addClass("has-error");
+                            $('#helpConfirmaPasswordOk').addClass("hidden");
+                            $('#helpConfirmaPasswordError').removeClass("hidden");
+                        }
+                        if(element === 'nome'){
+                            $('#gNome').addClass('has-error');
+                        }
+                        if(element === 'apelido'){
+                            $('#gNome').addClass('has-error');
+                        }
+                        if(element === 'rua'){
+                            $('#gRua').addClass('has-error');
+                        }
+                        if(element === 'codigoPostal'){
+                            $('#gCodigo').addClass('has-error');
+                        }
+                        if(element === 'localidade'){
+                            $('#gCodigo').addClass('has-error');
+                        }
+                        if(element === 'nif'){
+                            $('#gNIF').addClass('has-error');
+                        }
+                        if(element === 'telefone'){
+                            $('#gTelefone').addClass('has-error');
+                        }
+                    });
+                }
+            }
+         });
             
         
     }
     return true;
 }
-
-
-
-//$("#registration").submit(function(e) {
-//
-//    var url = "register.php"; // the script where you handle the form input.
-//
-//    $.ajax({
-//           type: "POST",
-//           url: url,
-//           data: $("#registration").serialize(), // serializes the form's elements.
-//           success: function(data)
-//           {
-//               alert(data); // show response from the php script.
-//           }
-//         });
-//
-//    e.preventDefault(); // avoid to execute the actual submit of the form.
-//});

@@ -18,7 +18,7 @@
                     <div class="form-group" id="emailGroup">
                         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-5">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" onchange="isValidEmailFormat();">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" onchange="isValidEmailFormat();">
                         </div>
                         <div class="col-sm-5">
                             <span id="helpEmail" class="help-block hidden">Email no formato incorreto.</span>
@@ -28,7 +28,7 @@
                     <div class="form-group" id="confirmEmailGroup">
                         <label for="inputConfirmarEmail" class="col-sm-2 control-label">Confirmar Email</label>
                         <div class="col-sm-5">
-                            <input type="email" class="form-control" id="inputConfirmarEmail" placeholder="Confirmar Email" onchange="isEqualEmail();">
+                            <input type="email" class="form-control" id="inputConfirmarEmail" placeholder="Confirmar Email"  name="confEmail" onchange="isEqualEmail();">
                         </div>
                         <div class="col-sm-5">
                             <span id="helpConfirmEmail" class="help-block hidden">Email de confirmação esta diferente.</span>
@@ -38,7 +38,7 @@
                     <div class="form-group" id='passwordGroup'>
                         <label for="inputPass" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" id="inputPass" placeholder="Password" onchange="passStrength();">
+                            <input type="password" class="form-control" id="inputPass" placeholder="Password"  name="password" onchange="passStrength();">
                             <span id="helpInfoPass" class="help-block">A senha deve possuir, no mínimo, 6 caracteres contendo, pelo menos uma letra e um número.</span>
                         </div>
                         <div class="col-sm-5">
@@ -51,7 +51,7 @@
                     <div class="form-group" id="confirmarPasswordGroup">
                         <label for="inputConfirmarPass" class="col-sm-2 control-label">Confirmar Password</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" id="inputConfirmarPass" placeholder="Confirmar Password" onchange="checkPasswordEqual();">
+                            <input type="password" class="form-control" id="inputConfirmarPass" placeholder="Confirmar Password"  name="conPass" onchange="checkPasswordEqual();">
                         </div>
                         <div class="col-sm-5">
                             <span id="helpConfirmaPasswordError" class="help-block hidden">As duas senhas não são identicas.</span>
@@ -62,36 +62,36 @@
                     <div class="form-group" id="gNome">
                         <label for="inputNome" class="col-sm-2 control-label">Nome</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+                            <input type="text" class="form-control" id="inputNome" name="nome" placeholder="Nome">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="inputApelido" placeholder="Apelido">
+                            <input type="text" class="form-control" id="inputApelido"  name="apelido" placeholder="Apelido">
                         </div>
                     </div>
                     
                     <div class="form-group" id="gRua">
                         <label for="inputRua" class="col-sm-2 control-label">Rua/No.</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputRua" placeholder="Rua No.">
+                            <input type="text" class="form-control" id="inputRua" name="rua"  placeholder="Rua No.">
                         </div>
                     </div>
                     
                     <div class="form-group" id="gCodigo">
                         <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="inputCodigoPostal" placeholder="Código Postal">
+                            <input type="text" class="form-control" id="inputCodigoPostal" name="codigoPostal"  placeholder="Código Postal">
                         </div>
                         <label for="inputLocalidade" class="col-sm-2 control-label">Localidade</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="inputLocalidade" placeholder="Localidade">
+                            <input type="text" class="form-control" id="inputLocalidade" name="localidade"  placeholder="Localidade">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputPais" class="col-sm-2 control-label">País</label>
                         <div class="col-sm-5">
-                            <select class="form-control" id="inputPais" onchange="portugalPhoneNumber();">
-                                <option value="portugal">Portugal</option>
+                            <select class="form-control" id="inputPais" name="pais"  onchange="portugalPhoneNumber();">
+                                <option value="Portugal">Portugal</option>
                                 <option value="Brasil">Brasil</option>
                                 <option value="Canada">Canada</option>
                                 <option value="Espanha">Espanha</option>
@@ -102,14 +102,14 @@
                     <div class="form-group" id="gNIF">
                         <label for="inputNIF" class="col-sm-2 control-label">NIF</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNIF" placeholder="NIF">
+                            <input type="text" class="form-control" id="inputNIF" name="nif"  placeholder="NIF">
                         </div>
                     </div>
                     
                     <div class="form-group" id="gTelefone">
                         <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputTelefone" placeholder="Telefone">
+                            <input type="text" class="form-control" id="inputTelefone" name="telefone"  placeholder="Telefone">
                         </div>
                     </div>
                     <div class="form-group">
