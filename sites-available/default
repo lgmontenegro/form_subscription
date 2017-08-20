@@ -1,0 +1,27 @@
+server {
+    listen  80 default_server;
+    root /usr/share/nginx/html;
+    index index.html index.php;
+
+    location / {
+        index  index.php;
+        try_files $uri $uri/ $uri.html =404;
+    }
+
+    
+    location ~ \.(js|css|eot|svg|ttf|wolf|wolf2){
+        root /usr/share/nginx/html;
+        gzip_static on;
+        expires 1y;
+        add_header Cache-Control public;
+        add_header ETag "";
+    }
+    
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass 172.17.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
