@@ -1,5 +1,6 @@
 <?php
-namespace base;
+namespace olx\base;
+
 Class View{
     protected $template, $vars;
     

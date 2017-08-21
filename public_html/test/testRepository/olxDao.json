@@ -1,0 +1,7 @@
+{
+    "name": "database\\olxDaoExistence",
+    "test": {
+        "execute":"instance only",
+        "return": true
+    }
+}
