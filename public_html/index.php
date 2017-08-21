@@ -1,16 +1,11 @@
 <?php
-include 'base/config_app.php';
-
+include 'config/config_app.php';
 $view = filter_input(INPUT_GET, 'view');
 $viewFile = "";
 if($view){
     $viewFile = 'view/'.trim($view).".phtml";
-    if(file_exists($viewFile)){
-        $template = new \base\View($viewFile);
-    }
 }else{
-    $template = new \base\View('view/index.phtml');
+    $viewFile = 'view/index.phtml';
 }
-
-
+$template = new olx\base\View($viewFile);
 echo $template->render();

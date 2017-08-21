@@ -205,43 +205,58 @@ function submitForm(){
                 if(data.hasOwnProperty('success')){
                     window.location.replace("success.php");
                 }else{
-                    window.alert('Foram detectados erros nos dados enviados. Por favor, corrija. Lembramos que todos os campos são obrigatórios');
-                    console.log(data);
-                    data.error.forEach(function(element){
-                        console.log(element);
-                        if(element === 'email'){
+                    if(data.hasOwnProperty('conflict')){
+                        window.alert('Encontramos alguns problemas, por favor, corrija.');
+                        console.log(data.conflict);
+                        if(data.conflict.hasOwnProperty('email')){
+                            $('#emailExists').removeClass("hidden");
+                            $('#emailGroup').addClass("has-error");
+                            $('#emailGroup').removeClass("has-success");
                             $('#confirmEmailGroup').addClass("has-error");
                             $('#confirmEmailGroup').removeClass("has-success");
-                            $('#helpConfirmEmail').removeClass("hidden");
                         }
-                        if(element === 'password'){
-                            $('#confirmarPasswordGroup').removeClass("has-error");
-                            $('#confirmarPasswordGroup').addClass("has-error");
-                            $('#helpConfirmaPasswordOk').addClass("hidden");
-                            $('#helpConfirmaPasswordError').removeClass("hidden");
-                        }
-                        if(element === 'nome'){
-                            $('#gNome').addClass('has-error');
-                        }
-                        if(element === 'apelido'){
-                            $('#gNome').addClass('has-error');
-                        }
-                        if(element === 'rua'){
-                            $('#gRua').addClass('has-error');
-                        }
-                        if(element === 'codigoPostal'){
-                            $('#gCodigo').addClass('has-error');
-                        }
-                        if(element === 'localidade'){
-                            $('#gCodigo').addClass('has-error');
-                        }
-                        if(element === 'nif'){
+                        if(data.conflict.hasOwnProperty('nif')){
+                            $('#nifExists').removeClass("hidden");
                             $('#gNIF').addClass('has-error');
+                            $('#gNIF').removeClass('has-success');
                         }
-                        if(element === 'telefone'){
-                            $('#gTelefone').addClass('has-error');
-                        }
-                    });
+                    }else{
+                        window.alert('Foram detectados erros nos dados enviados. Por favor, corrija. Lembramos que todos os campos são obrigatórios');
+                        data.error.forEach(function(element){
+                            if(element === 'email'){
+                                $('#confirmEmailGroup').addClass("has-error");
+                                $('#confirmEmailGroup').removeClass("has-success");
+                                $('#helpConfirmEmail').removeClass("hidden");
+                            }
+                            if(element === 'password'){
+                                $('#confirmarPasswordGroup').removeClass("has-error");
+                                $('#confirmarPasswordGroup').addClass("has-error");
+                                $('#helpConfirmaPasswordOk').addClass("hidden");
+                                $('#helpConfirmaPasswordError').removeClass("hidden");
+                            }
+                            if(element === 'nome'){
+                                $('#gNome').addClass('has-error');
+                            }
+                            if(element === 'apelido'){
+                                $('#gNome').addClass('has-error');
+                            }
+                            if(element === 'rua'){
+                                $('#gRua').addClass('has-error');
+                            }
+                            if(element === 'codigoPostal'){
+                                $('#gCodigo').addClass('has-error');
+                            }
+                            if(element === 'localidade'){
+                                $('#gCodigo').addClass('has-error');
+                            }
+                            if(element === 'nif'){
+                                $('#gNIF').addClass('has-error');
+                            }
+                            if(element === 'telefone'){
+                                $('#gTelefone').addClass('has-error');
+                            }
+                        });
+                    }
                 }
             }
          });

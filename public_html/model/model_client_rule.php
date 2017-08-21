@@ -1,5 +1,5 @@
 <?php
-namespace helper;
+namespace olx\model;
 class ClientRule
 {
     public static function getInstance()
