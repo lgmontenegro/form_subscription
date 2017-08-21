@@ -1,0 +1,28 @@
+nginx:
+   image: "tutum/nginx"
+   ports:
+      - "80:80"
+   volumes:
+      - ./sites-available/default:/etc/nginx/sites-available/default
+      - ./sites-available/default:/etc/nginx/sites-enabled/default
+      - ./logs/nginx-error.log:/var/log/nginx/error.log
+      - ./logs/nginx-access.log:/var/log/nginx/access.log
+      - ./public_html:/usr/share/nginx/html
+phpfpm:
+   build: ./custom_dockerfiles
+   links:
+      - "mysql:database"
+   ports:
+      - "9000:9000"
+   volumes:
+       - ./public_html:/usr/share/nginx/html
+mysql:
+   image: mariadb
+   container_name: database_container
+   ports:
+      - "3306:3306"
+   volumes:
+       - ./sql_dump:/sql_dump
+   environment:
+      MYSQL_ROOT_PASSWORD: password
+
